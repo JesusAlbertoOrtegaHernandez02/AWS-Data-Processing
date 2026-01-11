@@ -1,0 +1,6 @@
+{
+  "--database": "car_stats_db",
+  "--table": "raw",
+  "--output_path": "s3://datalate-car-stats-654654465031/processed/daily_vehicle_stats/",
+  "--enable-continuous-cloudwatch-log": "true"
+}

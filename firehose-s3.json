@@ -1,0 +1,38 @@
+{
+  "BucketARN": "arn:aws:s3:::datalate-car-stats-654654465031",
+  "RoleARN": "arn:aws:iam::654654465031:role/LabRole",
+  "Prefix": "raw/speed_range=!{partitionKeyFromLambda:speed_range}/",
+  "ErrorOutputPrefix": "errors/!{firehose:error-output-type}/",
+  "BufferingHints": {
+    "SizeInMBs": 64,
+    "IntervalInSeconds": 60
+  },
+  "DynamicPartitioningConfiguration": {
+    "Enabled": true,
+    "RetryOptions": {
+      "DurationInSeconds": 300
+    }
+  },
+  "ProcessingConfiguration": {
+    "Enabled": true,
+    "Processors": [
+      {
+        "Type": "Lambda",
+        "Parameters": [
+          {
+            "ParameterName": "LambdaArn",
+            "ParameterValue": "arn:aws:lambda:us-east-1:654654465031:function:speed-firehose"
+          },
+          {
+            "ParameterName": "BufferSizeInMBs",
+            "ParameterValue": "1"
+          },
+          {
+            "ParameterName": "BufferIntervalInSeconds",
+            "ParameterValue": "60"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+
+{
+  "Name": "glueetl",
+  "ScriptLocation": "s3://datalate-car-stats-654654465031/scripts/consumo_medio_de_vehiculos.py",
+  "PythonVersion": "3"
+}

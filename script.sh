@@ -35,13 +35,21 @@ aws firehose create-delivery-stream `
 
 # Tercera práctica, Glue
 aws glue create-database --database-input Name=car_stats_db
-aws glue create-crawler `
->>  --name car-raw-crawler `
->>  --role arn:aws:iam::654654465031:role/LabRole `
->>  --database-name car_stats_db `
->>  --targets file://targets.json
+aws glue create-crawler 
+>>  --name car-raw-crawler 
+>>  --role arn:aws:iam::654654465031:role/LabRole 
+>>  --database-name car_stats_db 
+>>  --targets file://target_raw.json
+
+aws glue create-crawler `                                     
+>>   --name car-processed-crawler `                                                                                                           
+>>   --role arn:aws:iam::654654465031:role/LabRole `  
+>>   --database-name car_stats_db `                                                                                                     
+>>   --targets file://target_processed.json  
 
 aws glue start-crawler --name car-raw-crawler
+aws glue start-crawler --name car-processed-crawler
+
 
 
 aws s3 cp consumo_medio_de_vehiculos.py s3://datalate-car-stats-654654465031/scripts/
